@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { database } from '@/lib/firebase';
-import { ref, set, onValue, off } from 'firebase/database';
+import { ref, set, onValue, off, DataSnapshot } from 'firebase/database';
 
 export default function Home() {
   const [text, setText] = useState('');
@@ -14,7 +14,7 @@ export default function Home() {
     const textRef = ref(database, 'text');
     
     // Функция для получения данных
-    const handleData = (snapshot: any) => {
+    const handleData = (snapshot: DataSnapshot) => {
       const data = snapshot.val();
       if (data) {
         setSavedText(data.content || '');
